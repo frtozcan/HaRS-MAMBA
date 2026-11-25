@@ -52,6 +52,8 @@ run_experiments.py    runs everything above in order
 selftest.py           CPU checks: SSD == recurrence, Δ = 0 skips a token, routes, model, loss
 model_summary.py      parameters and MACs
 results/              fold assignments and all per-image results reported in the paper
+weights/              trained HaRS-Mamba checkpoints, one per fold (see weights/README.md)
+figures/              figures of the paper (Fig. 1–6) and supplementary figures
 ```
 
 ## Installation
@@ -87,6 +89,40 @@ python selftest.py
 Training settings: AdamW (lr 1e-3, weight decay 1e-2), 5-epoch warm-up and cosine decay, batch size 8,
 at most 200 epochs with early stopping (patience 40, never before epoch 60), mixed precision except the SSD
 scan, seed 42 + fold index. One fold takes about 3–4 h on an RTX 2080 Super Max-Q laptop GPU.
+
+## Pretrained weights
+
+`weights/hars_mamba_fold{1..5}.pt` are the five fold models of the paper (12 MB each), each selected on its
+held-out fold. Quick use:
+
+```python
+import torch
+from hars import build_model
+
+ck = torch.load("weights/hars_mamba_fold1.pt", map_location="cpu")
+model = build_model("base")
+model.load_state_dict(ck["model"])
+model.eval()
+logits = model(x)["seg"]          # x: (B, 3, 256, 256), ImageNet-normalised RGB
+```
+
+To reproduce Table 2 (single models, ensemble, TTA) without training, copy the checkpoints to
+`$HARS_RUNS/hars_mamba/fold_k/best.pt` and run `python evaluate_folds.py --name hars_mamba`.
+
+## Figures
+
+| File | Content |
+|---|---|
+| `figures/fig1_architecture.png` | Fig. 1 — architecture |
+| `figures/fig2_training_curves.png` | Fig. 2 — training loss and held-out-fold Dice |
+| `figures/fig3_dice_distribution.png` | Fig. 3 — per-image test Dice |
+| `figures/fig4_dice_by_lesion_size.png` | Fig. 4 — ensemble Dice by lesion size |
+| `figures/fig5_worst_cases.png` | Fig. 5 — the eight test images with the lowest ensemble Dice |
+| `figures/fig6_hair_maps.png` | Fig. 6 — hair probability maps |
+| `figures/figS1_test_dice_per_fold.png` | test Dice of each fold model and the ensemble |
+| `figures/figS2_best_cases.png`, `figS3_median_cases.png` | best and median test cases |
+
+![HaRS-Mamba architecture](figures/fig1_architecture.png)
 
 ## Released results
 
