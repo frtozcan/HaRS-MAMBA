@@ -1,0 +1,6 @@
+# Install PyTorch (>= 2.1, with CUDA if available) first: https://pytorch.org/get-started/locally/
+# No mamba_ssm / Triton / custom CUDA build is needed.
+numpy>=1.24
+pillow>=10.0
+scipy>=1.10
+scikit-learn>=1.3

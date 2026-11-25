@@ -1,0 +1,18 @@
+{
+  "dice_img": 0.8876700849520922,
+  "iou_img": 0.818857459878461,
+  "sensitivity_img": 0.9346144737089387,
+  "specificity_img": 0.9385824441147763,
+  "accuracy_img": 0.9359040679931641,
+  "dice_global": 0.8864100130304539,
+  "iou_global": 0.7959931603216677,
+  "sensitivity_global": 0.893535941951365,
+  "specificity_global": 0.9523713444820316,
+  "accuracy_global": 0.9359040679931641,
+  "n_images": 1000,
+  "thresholded_jaccard": 0.7650416612639626,
+  "n_dice_lt_0.5": 36,
+  "fold": 4,
+  "best_epoch": 136,
+  "val_dice_img": 0.9058736217847859
+}

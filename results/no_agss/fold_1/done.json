@@ -1,0 +1,15 @@
+{
+  "fold": 1,
+  "best_val_dice_img": 0.9031970900056187,
+  "best_epoch": 104,
+  "epochs_run": 144,
+  "stop_reason": "early_stopping (no improvement for 40 epochs)",
+  "rollbacks": 0,
+  "seed": 43,
+  "params": 2967398,
+  "n_train": 2154,
+  "n_val": 540,
+  "no_artifact": true,
+  "synthetic_hair": 0.0,
+  "finished": "2026-11-22 04:17:20"
+}

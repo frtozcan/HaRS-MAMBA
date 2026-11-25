@@ -1,0 +1,6 @@
+fold,n_train,n_val,val_from_official_val,val_mean_lesion_area,val_n_lesion_area_gt_60pct
+1,2154,540,17,0.215,37
+2,2155,539,20,0.218,40
+3,2156,538,24,0.215,33
+4,2156,538,23,0.219,36
+5,2155,539,16,0.213,40
